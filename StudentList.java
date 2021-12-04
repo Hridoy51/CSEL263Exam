@@ -3,9 +3,13 @@ import java.text. * ;
 import java.util. * ;
 public class StudentList {
 	public static void main(String[] args) {
-
+		
 		//		Check arguments
-		if (args[0].equals("a")) {
+		if ((args==null)||(args.length==0))
+		{
+			System.out.println("Invalid argument");
+		}
+		else if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
 				BufferedReader s = new BufferedReader(
@@ -96,6 +100,9 @@ public class StudentList {
 				System.out.println(count + " word(s) found " + a.length);
 			} catch(Exception e) {}
 			System.out.println("Data Loaded.");
+		}
+		else{
+			System.out.println("Wrong argument");
 		}
 	}
 }
