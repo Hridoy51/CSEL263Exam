@@ -9,84 +9,84 @@ public class StudentList {
 		{
 			System.out.println("Invalid argument");
 		}
-		else if (args[0].equals("a")) {
+		else if (args[0].equals("charArray")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader bufferReader = new BufferedReader(
 				new InputStreamReader(
 				new FileInputStream("students.txt")));
-				String r = s.readLine();
-				String i[] = r.split(",");
-				for (String j: i) {
-					System.out.println(j);
+				String fullLine = bufferReader.readLine();
+				String studentNames[] = fullLine.split(",");
+				for (String student: studentNames) {
+					System.out.println(student);
 				}
-			} catch(Exception e) {}
+			} catch(Exception exception) {}
 			System.out.println("Data Loaded.");
 		}
-		else if (args[0].equals("r")) {
+		else if (args[0].equals("fullLine")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader bufferReader = new BufferedReader(
 				new InputStreamReader(
 				new FileInputStream("students.txt")));
-				String r = s.readLine();
-				String i[] = r.split(", ");
-				Random x = new Random();
-				int size = i.length;
-				int y = x.nextInt() % size;
-				y = Math.abs(y);
-				System.out.println(y);
+				String fullLine = bufferReader.readLine();
+				String studentNames[] = fullLine.split(", ");
+				Random random = new Random();
+				int size = studentNames.length;
+				int randomIndex = random.nextInt() % size;
+				randomIndex = Math.abs(randomIndex);
+				System.out.println(randomIndex);
 				System.out.println(size);
-				System.out.println(i[y]);
-			} catch(Exception e) {}
+				System.out.println(studentNames[randomIndex]);
+			} catch(Exception exception) {}
 			System.out.println("Data Loaded.");
 		}
 		else if (args[0].contains("+")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedWriter s = new BufferedWriter(
+				BufferedWriter bufferReader = new BufferedWriter(
 				new FileWriter("students.txt", true));
-				String t = args[0].substring(1);
-				Date d = new Date();
-				String df = "dd/mm/yyyy-hh:mm:ss a";
-				DateFormat dateFormat = new SimpleDateFormat(df);
-				String fd = dateFormat.format(d);
-				s.write(", " + t + "\nList last updated on " + fd);
-				s.close();
-			} catch(Exception e) {}
+				String addStudent = args[0].substring(1);
+				Date date = new Date();
+				String dateFormate = "dd/mm/yyyy-hh:mm:ss charArray";
+				DateFormat dateFormat = new SimpleDateFormat(dateFormate);
+				String fd = dateFormat.format(date);
+				bufferReader.write(", " + addStudent + "\nList last updated on " + fd);
+				bufferReader.close();
+			} catch(Exception exception) {}
 
 			System.out.println("Data Loaded.");
 		}
 		else if (args[0].contains("?")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader bufferReader = new BufferedReader(
 				new InputStreamReader(
 				new FileInputStream("students.txt")));
-				String r = s.readLine();
-				String i[] = r.split(", ");
+				String fullLine = bufferReader.readLine();
+				String studentNames[] = fullLine.split(", ");
 				boolean done = false;
-				String t = args[0].substring(1);
-				for (int idx = 0; idx < i.length && !done; idx++) {
-					if (i[idx].equals(t)) {
+				String addStudent = args[0].substring(1);
+				for (int idx = 0; idx < studentNames.length && !done; idx++) {
+					if (studentNames[idx].equals(addStudent)) {
 						System.out.println("We found it!");
 						done = true;
 					}
 				}
-			} catch(Exception e) {}
+			} catch(Exception exception) {}
 			System.out.println("Data Loaded.");
 		}
 		else if (args[0].contains("c")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader s = new BufferedReader(
+				BufferedReader bufferReader = new BufferedReader(
 				new InputStreamReader(
 				new FileInputStream("students.txt")));
-				String D = s.readLine();
-				char a[] = D.toCharArray();
+				String date = bufferReader.readLine();
+				char charArray[] = date.toCharArray();
 				boolean in_word = false;
 				int count = 0;
-				for (char c: a) {
+				for (char c: charArray) {
 					if (c == ' ') {
 						if (!in_word) {
 							count++;
@@ -97,8 +97,8 @@ public class StudentList {
 						}
 					}
 				}
-				System.out.println(count + " word(s) found " + a.length);
-			} catch(Exception e) {}
+				System.out.println(count + " word(bufferReader) found " + charArray.length);
+			} catch(Exception exception) {}
 			System.out.println("Data Loaded.");
 		}
 		else{
