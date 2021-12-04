@@ -25,10 +25,13 @@ public class StudentList {
 					new InputStreamReader(
 							new FileInputStream("students.txt"))); 
 			String r = s.readLine();
-			System.out.println(r);
-			String i[] = r.split(",");	
+			String i[] = r.split(", ");	
 			Random x = new Random();
-				int y = x.nextInt();
+			int size = i.length;
+				int y = x.nextInt()%size;
+				y=Math.abs(y);
+				System.out.println(y);
+				System.out.println(size);
 					System.out.println(i[y]);
 			} catch (Exception e){} 
 			System.out.println("Data Loaded.");			
@@ -57,7 +60,7 @@ public class StudentList {
 					new InputStreamReader(
 							new FileInputStream("students.txt"))); 
 			String r = s.readLine();
-			String i[] = r.split(",");	
+			String i[] = r.split(", ");	
 			boolean done = false;
 			String t = args[0].substring(1);
 			for(int idx = 0; idx<i.length && !done; idx++) {
