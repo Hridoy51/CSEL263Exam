@@ -2,20 +2,34 @@ import java.io. * ;
 import java.text. * ;
 import java.util. * ;
 public class StudentList {
+	public static String readFile()
+	{
+		try{
+				String fullLine;
+				BufferedReader bufferReader = new BufferedReader(
+				new InputStreamReader(
+				new FileInputStream("students.txt")));
+				fullLine = bufferReader.readLine();
+				bufferReader.close();
+				return fullLine;
+		}
+		catch(Exception exception) {
+			System.out.println("Can't open file");
+			return null;
+		}
+	}
 	public static void main(String[] args) {
-		
+
+		String fullLine = readFile();
 		//		Check arguments
 		if ((args==null)||(args.length==0))
 		{
 			System.out.println("Invalid argument");
 		}
-		else if (args[0].equals("charArray")) {
+		else if (args[0].equals("a")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferReader = new BufferedReader(
-				new InputStreamReader(
-				new FileInputStream("students.txt")));
-				String fullLine = bufferReader.readLine();
+				 
 				String studentNames[] = fullLine.split(",");
 				for (String student: studentNames) {
 					System.out.println(student);
@@ -23,13 +37,9 @@ public class StudentList {
 			} catch(Exception exception) {}
 			System.out.println("Data Loaded.");
 		}
-		else if (args[0].equals("fullLine")) {
+		else if (args[0].equals("r")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferReader = new BufferedReader(
-				new InputStreamReader(
-				new FileInputStream("students.txt")));
-				String fullLine = bufferReader.readLine();
 				String studentNames[] = fullLine.split(", ");
 				Random random = new Random();
 				int size = studentNames.length;
@@ -42,28 +52,25 @@ public class StudentList {
 			System.out.println("Data Loaded.");
 		}
 		else if (args[0].contains("+")) {
-			System.out.println("Loading data ...");
+			System.out.println("Loading data ...");			
 			try {
-				BufferedWriter bufferReader = new BufferedWriter(
-				new FileWriter("students.txt", true));
-				String addStudent = args[0].substring(1);
-				Date date = new Date();
-				String dateFormate = "dd/mm/yyyy-hh:mm:ss charArray";
-				DateFormat dateFormat = new SimpleDateFormat(dateFormate);
-				String fd = dateFormat.format(date);
-				bufferReader.write(", " + addStudent + "\nList last updated on " + fd);
-				bufferReader.close();
-			} catch(Exception exception) {}
-
-			System.out.println("Data Loaded.");
+			BufferedWriter s = new BufferedWriter(
+					new FileWriter("students.txt", true));
+			String t = args[0].substring(1);
+	        Date d = new Date();
+	        String df = "dd/mm/yyyy-hh:mm:ss a";
+	        DateFormat dateFormat = new SimpleDateFormat(df);
+	        String fd= dateFormat.format(d);
+			s.write(", "+t+"\nList last updated on "+fd);
+			s.close();
+			} catch (Exception e){}
+							
+			System.out.println("Data Loaded.");	
 		}
 		else if (args[0].contains("?")) {
 			System.out.println("Loading data ...");
 			try {
-				BufferedReader bufferReader = new BufferedReader(
-				new InputStreamReader(
-				new FileInputStream("students.txt")));
-				String fullLine = bufferReader.readLine();
+				 
 				String studentNames[] = fullLine.split(", ");
 				boolean done = false;
 				String addStudent = args[0].substring(1);
@@ -106,3 +113,4 @@ public class StudentList {
 		}
 	}
 }
+
