@@ -64,8 +64,7 @@ public class StudentList {
 		}
 		else if (args[0].contains(cons.search)) {
 			System.out.println(cons.load);
-			try {
-				 
+			try { 
 				String studentNames[] = fullLine.split(cons.commaWithSpace);
 				String addStudent = args[0].substring(1);
 				for (int idx = 0; idx < studentNames.length; idx++) {
@@ -80,25 +79,14 @@ public class StudentList {
 		else if (args[0].contains(cons.countWords)) {
 			System.out.println(cons.load);
 			try {
-				BufferedReader bufferReader = new BufferedReader(
-				new InputStreamReader(
-				new FileInputStream("students.txt")));
-				String date = bufferReader.readLine();
-				char charArray[] = date.toCharArray();
-				boolean in_word = false;
-				int count = 0;
-				for (char c: charArray) {
-					if (c == ' ') {
-						if (!in_word) {
-							count++;
-							in_word = true;
-						}
-						else {
-							in_word = false;
-						}
-					}
+				String studentNames[] = fullLine.split(cons.commaWithSpace);
+				System.out.println(studentNames.length);
+				int totalChar = 0 ;
+				for (int i=0;i<studentNames.length;i++)
+				{
+					totalChar += studentNames[i].length();
 				}
-				System.out.println(count + " word(bufferReader) found " + charArray.length);
+				System.out.println(totalChar);
 			} catch(Exception exception) {}
 			System.out.println(cons.loaded);
 		}
