@@ -67,12 +67,11 @@ public class StudentList {
 			try {
 				 
 				String studentNames[] = fullLine.split(cons.commaWithSpace);
-				boolean done = false;
 				String addStudent = args[0].substring(1);
-				for (int idx = 0; idx < studentNames.length && !done; idx++) {
+				for (int idx = 0; idx < studentNames.length; idx++) {
 					if (studentNames[idx].equals(addStudent)) {
 						System.out.println(cons.found);
-						done = true;
+						break;
 					}
 				}
 			} catch(Exception exception) {}
