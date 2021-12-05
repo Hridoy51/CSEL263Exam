@@ -20,27 +20,29 @@ public class StudentList {
 	}
 	public static void main(String[] args) {
 
+		Constant cons = new Constant();
+
 		String fullLine = readFile();
 		//		Check arguments
 		if ((args==null)||(args.length==0))
 		{
-			System.out.println("Invalid argument");
+			System.out.println(cons.invalid);
 		}
-		else if (args[0].equals("a")) {
-			System.out.println("Loading data ...");
+		else if (args[0].equals(cons.showList)) {
+			System.out.println(cons.load);
 			try {
 				 
-				String studentNames[] = fullLine.split(",");
+				String studentNames[] = fullLine.split(cons.comma);
 				for (String student: studentNames) {
 					System.out.println(student);
 				}
 			} catch(Exception exception) {}
-			System.out.println("Data Loaded.");
+			System.out.println(cons.loaded);
 		}
-		else if (args[0].equals("r")) {
-			System.out.println("Loading data ...");
+		else if (args[0].equals(cons.showRandom)) {
+			System.out.println(cons.load);
 			try {
-				String studentNames[] = fullLine.split(", ");
+				String studentNames[] = fullLine.split(cons.commaWithSpace);
 				Random random = new Random();
 				int size = studentNames.length;
 				int randomIndex = random.nextInt() % size;
@@ -49,42 +51,42 @@ public class StudentList {
 				System.out.println(size);
 				System.out.println(studentNames[randomIndex]);
 			} catch(Exception exception) {}
-			System.out.println("Data Loaded.");
+			System.out.println(cons.loaded);
 		}
-		else if (args[0].contains("+")) {
-			System.out.println("Loading data ...");			
+		else if (args[0].contains(cons.add)) {
+			System.out.println(cons.load);			
 			try {
-			BufferedWriter s = new BufferedWriter(
+			BufferedWriter writter = new BufferedWriter(
 					new FileWriter("students.txt", true));
-			String t = args[0].substring(1);
-	        Date d = new Date();
+			String newName = args[0].substring(1);
+	        Date date = new Date();
 	        String df = "dd/mm/yyyy-hh:mm:ss a";
 	        DateFormat dateFormat = new SimpleDateFormat(df);
-	        String fd= dateFormat.format(d);
-			s.write(", "+t+"\nList last updated on "+fd);
-			s.close();
+	        String fd= dateFormat.format(date);
+			writter.write(cons.commaWithSpace+newName+"\nList last updated on "+fd);
+			writter.close();
 			} catch (Exception e){}
 							
-			System.out.println("Data Loaded.");	
+			System.out.println(cons.loaded);	
 		}
-		else if (args[0].contains("?")) {
-			System.out.println("Loading data ...");
+		else if (args[0].contains(cons.search)) {
+			System.out.println(cons.load);
 			try {
 				 
-				String studentNames[] = fullLine.split(", ");
+				String studentNames[] = fullLine.split(cons.commaWithSpace);
 				boolean done = false;
 				String addStudent = args[0].substring(1);
 				for (int idx = 0; idx < studentNames.length && !done; idx++) {
 					if (studentNames[idx].equals(addStudent)) {
-						System.out.println("We found it!");
+						System.out.println(cons.found);
 						done = true;
 					}
 				}
 			} catch(Exception exception) {}
-			System.out.println("Data Loaded.");
+			System.out.println(cons.loaded);
 		}
-		else if (args[0].contains("c")) {
-			System.out.println("Loading data ...");
+		else if (args[0].contains(cons.countWords)) {
+			System.out.println(cons.load);
 			try {
 				BufferedReader bufferReader = new BufferedReader(
 				new InputStreamReader(
@@ -106,10 +108,10 @@ public class StudentList {
 				}
 				System.out.println(count + " word(bufferReader) found " + charArray.length);
 			} catch(Exception exception) {}
-			System.out.println("Data Loaded.");
+			System.out.println(cons.loaded);
 		}
 		else{
-			System.out.println("Wrong argument");
+			System.out.println(cons.wrong);
 		}
 	}
 }
