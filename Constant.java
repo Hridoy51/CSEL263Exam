@@ -11,4 +11,5 @@ public class Constant {
     String search="?";
     String comma=",";
     String commaWithSpace=", ";
+    String dateFormat = "dd/mm/yyyy-hh:mm:ss a" ;
 } 

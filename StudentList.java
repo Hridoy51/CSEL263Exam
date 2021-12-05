@@ -44,12 +44,7 @@ public class StudentList {
 			try {
 				String studentNames[] = fullLine.split(cons.commaWithSpace);
 				Random random = new Random();
-				int size = studentNames.length;
-				int randomIndex = random.nextInt() % size;
-				randomIndex = Math.abs(randomIndex);
-				System.out.println(randomIndex);
-				System.out.println(size);
-				System.out.println(studentNames[randomIndex]);
+				System.out.println(studentNames[Math.abs(random.nextInt() % studentNames.length)]);
 			} catch(Exception exception) {}
 			System.out.println(cons.loaded);
 		}
@@ -60,10 +55,8 @@ public class StudentList {
 					new FileWriter("students.txt", true));
 			String newName = args[0].substring(1);
 	        Date date = new Date();
-	        String df = "dd/mm/yyyy-hh:mm:ss a";
-	        DateFormat dateFormat = new SimpleDateFormat(df);
-	        String fd= dateFormat.format(date);
-			writter.write(cons.commaWithSpace+newName+"\nList last updated on "+fd);
+	        DateFormat dateFormat = new SimpleDateFormat(cons.dateFormat);
+			writter.write(cons.commaWithSpace+newName+"\nList last updated on "+dateFormat.format(date));
 			writter.close();
 			} catch (Exception e){}
 							
